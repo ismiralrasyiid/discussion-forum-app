@@ -8,10 +8,9 @@ import useInput from '../hooks/useInput';
 import { fetchCreateThread } from '../states/threads/action';
 
 function Create() {
-  const defaultInput = '';
-  const [title, onTitleChangeHandler] = useInput(defaultInput);
-  const [category, onCategoryChangeHandler] = useInput(defaultInput);
-  const [body, onBodyChangeHandler] = useInput(defaultInput);
+  const [title, onTitleChangeHandler] = useInput();
+  const [category, onCategoryChangeHandler] = useInput();
+  const [body, onBodyChangeHandler] = useInput();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
