@@ -1,0 +1,55 @@
+:root{
+  --toastify-color-progress-light : var(--dark-bg-light);
+  --toastify-color-progress-success : var(--dark-bg-light);
+  --toastify-color-progress-error : var(--dark-bg-light);
+  --toastify-icon-color-success : var(--dark-bg-light);
+  --toastify-icon-color-error : var(--dark-bg-light);
+}
+.Toastify__toast-container--top-right {
+  top: 70px;
+  right: 20px;
+}
+.Toastify__toast-container{
+  padding: 0;
+  width: 200px;
+}
+.Toastify__toast{
+  border-radius: 2px;
+  padding: 4px;
+  margin: 0 0 5px;
+}
+.Toastify__toast-body{
+  margin: 0 auto;
+  padding: 0 8px;
+}
+.Toastify__toast-theme--light{
+  color: var(--dark-bg-light);
+  font-family: var(--main-font);
+}
+.Toastify__close-button--light{
+  opacity: 0.8;
+  color: var(--dark-bg-light);
+}
+.red .Toastify__toast-theme--light{
+  background-color: var(--red-color);
+}
+.orange .Toastify__toast-theme--light{
+  background-color: var(--orange-color);
+}
+.green .Toastify__toast-theme--light{
+  background-color: var(--green-color);
+}
+.blue .Toastify__toast-theme--light{
+  background-color: var(--blue-color);
+}
+.pink .Toastify__toast-theme--light{
+  background-color: var(--pink-color);
+}
+@media only screen and (max-width: 480px){
+  .Toastify__toast-container--top-right {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      left: auto;
+  }
+}
