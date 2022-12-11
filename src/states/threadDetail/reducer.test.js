@@ -62,6 +62,7 @@ const comment = {
     email: 'tester101@gmail.com',
   },
 };
+const userId = 'tester101';
 
 describe('threadDetailReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
@@ -112,7 +113,7 @@ describe('threadDetailReducer function', () => {
     const action = {
       type: ActionType.UP_VOTE_THREAD_DETAIL,
       payload: {
-        userId: 'tester101',
+        userId,
       },
     };
 
