@@ -50,6 +50,18 @@ const threadDetail = {
     },
   ],
 };
+const comment = {
+  id: 'comment-2',
+  content: 'Ini adalah komentar kedua',
+  createdAt: '2021-06-21T07:00:00.000Z',
+  upVotesBy: [],
+  downVotesBy: [],
+  owner: {
+    id: 'tester101',
+    name: 'Tester101',
+    email: 'tester101@gmail.com',
+  },
+};
 
 describe('threadDetailReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
@@ -82,18 +94,7 @@ describe('threadDetailReducer function', () => {
     const action = {
       type: ActionType.ADD_COMMENT,
       payload: {
-        comment: {
-          id: 'comment-2',
-          content: 'Ini adalah komentar kedua',
-          createdAt: '2021-06-21T07:00:00.000Z',
-          upVotesBy: [],
-          downVotesBy: [],
-          owner: {
-            id: 'tester101',
-            name: 'Tester101',
-            email: 'tester101@gmail.com',
-          },
-        },
+        comment,
       },
     };
 
