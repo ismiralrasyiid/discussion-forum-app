@@ -7,6 +7,8 @@ import threadDetailReducer from './reducer';
   - should return thread detail with new comment when given by ADD_COMMENT action
   - should return thread detail which contains userId in upVotesBy property
     when given by UP_VOTE_THREAD_DETAIL action
+  - should return thread detail with removed userId from upVotesBy property
+    when given by NEUTRALIZE_UP_VOTE_THREAD_DETAIL action
 */
 
 const ActionType = {
@@ -121,6 +123,27 @@ describe('threadDetailReducer function', () => {
     const expectedState = {
       ...initialState,
       upVotesBy: [...initialState.upVotesBy, action.payload.userId],
+    };
+
+    expect(actualState).toEqual(expectedState);
+  });
+
+  it('should return thread detail with removed userId from upVotesBy property when given by NEUTRALIZE_UP_VOTE_THREAD_DETAIL action', () => {
+    const initialState = {
+      ...threadDetail,
+      upVotesBy: [...threadDetail.upVotesBy, userId],
+    };
+    const action = {
+      type: ActionType.NEUTRALIZE_UP_VOTE_THREAD_DETAIL,
+      payload: {
+        userId,
+      },
+    };
+
+    const actualState = threadDetailReducer(initialState, action);
+    const expectedState = {
+      ...initialState,
+      upVotesBy: initialState.upVotesBy.filter((id) => id !== action.payload.userId),
     };
 
     expect(actualState).toEqual(expectedState);
