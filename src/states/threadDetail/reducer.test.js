@@ -8,7 +8,9 @@ import threadDetailReducer from './reducer';
   - should return thread detail which contains userId in upVotesBy property
     when given by UP_VOTE_THREAD_DETAIL action
   - should return thread detail with removed userId from upVotesBy property
-    when given by NEUTRALIZE_UP_VOTE_THREAD_DETAIL action
+  when given by NEUTRALIZE_UP_VOTE_THREAD_DETAIL action
+  - should return thread detail which contains userId in downVotesBy property
+    when given by DOWN_VOTE_THREAD_DETAIL action
 */
 
 const ActionType = {
@@ -144,6 +146,24 @@ describe('threadDetailReducer function', () => {
     const expectedState = {
       ...initialState,
       upVotesBy: initialState.upVotesBy.filter((id) => id !== action.payload.userId),
+    };
+
+    expect(actualState).toEqual(expectedState);
+  });
+
+  it('should return thread detail which contains userId in downVotesBy property when given by DOWN_VOTE_THREAD_DETAIL action', () => {
+    const initialState = threadDetail;
+    const action = {
+      type: ActionType.DOWN_VOTE_THREAD_DETAIL,
+      payload: {
+        userId,
+      },
+    };
+
+    const actualState = threadDetailReducer(initialState, action);
+    const expectedState = {
+      ...initialState,
+      downVotesBy: [...initialState.downVotesBy, action.payload.userId],
     };
 
     expect(actualState).toEqual(expectedState);
