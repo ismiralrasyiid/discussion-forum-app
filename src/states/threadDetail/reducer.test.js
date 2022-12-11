@@ -70,9 +70,9 @@ describe('threadDetailReducer function', () => {
       type: ActionType.UNKNOWN,
     };
 
-    const nextState = threadDetailReducer(initialState, action);
+    const actualState = threadDetailReducer(initialState, action);
 
-    expect(nextState).toEqual(initialState);
+    expect(actualState).toEqual(initialState);
   });
 
   it('should return thread detail when given by SET_THREAD_DETAIL action', () => {
@@ -84,9 +84,9 @@ describe('threadDetailReducer function', () => {
       },
     };
 
-    const nextState = threadDetailReducer(initialState, action);
+    const actualState = threadDetailReducer(initialState, action);
 
-    expect(nextState).toEqual(action.payload.threadDetail);
+    expect(actualState).toEqual(action.payload.threadDetail);
   });
 
   it('should return thread detail with new comment when given by ADD_COMMENT action', () => {
@@ -98,9 +98,9 @@ describe('threadDetailReducer function', () => {
       },
     };
 
-    const nextState = threadDetailReducer(initialState, action);
+    const actualState = threadDetailReducer(initialState, action);
 
-    expect(nextState).toEqual({
+    expect(actualState).toEqual({
       ...initialState,
       comments: [...initialState.comments, action.payload.comment],
     });
@@ -115,9 +115,9 @@ describe('threadDetailReducer function', () => {
       },
     };
 
-    const nextState = threadDetailReducer(initialState, action);
+    const actualState = threadDetailReducer(initialState, action);
 
-    expect(nextState).toEqual({
+    expect(actualState).toEqual({
       ...initialState,
       upVotesBy: [...initialState.upVotesBy, action.payload.userId],
     });

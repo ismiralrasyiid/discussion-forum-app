@@ -20,9 +20,9 @@ describe('authUserReducer function', () => {
       type: ActionType.UNKNOWN,
     };
 
-    const nextState = authUserReducer(initialState, action);
+    const actualState = authUserReducer(initialState, action);
 
-    expect(nextState).toEqual(initialState);
+    expect(actualState).toEqual(initialState);
   });
 
   it('should return authUser when given by SET_AUTH_USER action', () => {
@@ -39,9 +39,9 @@ describe('authUserReducer function', () => {
       },
     };
 
-    const nextState = authUserReducer(initialState, action);
+    const actualState = authUserReducer(initialState, action);
 
-    expect(nextState).toEqual(action.payload.authUser);
+    expect(actualState).toEqual(action.payload.authUser);
   });
 
   it('should return null when given by UNSET_AUTH_USER action', () => {
@@ -58,8 +58,8 @@ describe('authUserReducer function', () => {
       },
     };
 
-    const nextState = authUserReducer(initialState, action);
+    const actualState = authUserReducer(initialState, action);
 
-    expect(nextState).toBeNull();
+    expect(actualState).toBeNull();
   });
 });
