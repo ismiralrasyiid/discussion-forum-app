@@ -154,12 +154,8 @@ describe('threadDetailReducer function', () => {
     };
 
     const actualState = threadDetailReducer(initialState, action);
-    const expectedState = {
-      ...initialState,
-      upVotesBy: initialState.upVotesBy.filter((id) => id !== action.payload.userId),
-    };
 
-    expect(actualState).toEqual(expectedState);
+    expect(actualState).toEqual(threadDetail);
   });
 
   it('should return thread detail which contains userId in downVotesBy property when given by DOWN_VOTE_THREAD_DETAIL action', () => {
@@ -193,12 +189,8 @@ describe('threadDetailReducer function', () => {
     };
 
     const actualState = threadDetailReducer(initialState, action);
-    const expectedState = {
-      ...initialState,
-      downVotesBy: initialState.downVotesBy.filter((id) => id !== action.payload.userId),
-    };
 
-    expect(actualState).toEqual(expectedState);
+    expect(actualState).toEqual(threadDetail);
   });
 
   it('should return thread detail which contains userId in exact comment\'s upVotesBy property when given by UP_VOTE_COMMENT action', () => {
@@ -245,20 +237,8 @@ describe('threadDetailReducer function', () => {
     };
 
     const actualState = threadDetailReducer(initialState, action);
-    const expectedState = {
-      ...initialState,
-      comments: initialState.comments.map((commentItem) => {
-        if (commentItem.id === action.payload.commentId) {
-          return {
-            ...commentItem,
-            upVotesBy: commentItem.upVotesBy.filter((id) => id !== action.payload.userId),
-          };
-        }
-        return commentItem;
-      }),
-    };
 
-    expect(actualState).toEqual(expectedState);
+    expect(actualState).toEqual(threadDetail);
   });
 
   it('should return thread detail which contains userId in exact comment\'s downVotesBy property when given by DOWN_VOTE_COMMENT action', () => {
@@ -305,19 +285,7 @@ describe('threadDetailReducer function', () => {
     };
 
     const actualState = threadDetailReducer(initialState, action);
-    const expectedState = {
-      ...initialState,
-      comments: initialState.comments.map((commentItem) => {
-        if (commentItem.id === action.payload.commentId) {
-          return {
-            ...commentItem,
-            downVotesBy: commentItem.downVotesBy.filter((id) => id !== action.payload.userId),
-          };
-        }
-        return commentItem;
-      }),
-    };
 
-    expect(actualState).toEqual(expectedState);
+    expect(actualState).toEqual(threadDetail);
   });
 });
