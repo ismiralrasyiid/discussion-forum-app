@@ -12,6 +12,12 @@ const ActionType = {
   SET_AUTH_USER: 'SET_AUTH_USER',
   UNSET_AUTH_USER: 'UNSET_AUTH_USER',
 };
+const authUser = {
+  id: 'tester101',
+  name: 'Tester101',
+  email: 'tester101@gmail.com',
+  avatar: 'https://generated-image-url.jpg',
+};
 
 describe('authUserReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
@@ -30,12 +36,7 @@ describe('authUserReducer function', () => {
     const action = {
       type: ActionType.SET_AUTH_USER,
       payload: {
-        authUser: {
-          id: 'tester101',
-          name: 'Tester101',
-          email: 'tester101@gmail.com',
-          avatar: 'https://generated-image-url.jpg',
-        },
+        authUser,
       },
     };
 
