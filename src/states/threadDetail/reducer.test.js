@@ -17,6 +17,10 @@ import threadDetailReducer from './reducer';
     when given by UP_VOTE_COMMENT action
   - should return thread detail with removed userId in exact comment's upVotesBy property
     when given by NEUTRALIZE_UP_VOTE_COMMENT action
+  - should return thread detail which contains userId in exact comment's downVotesBy property
+    when given by DOWN_VOTE_COMMENT action
+  - should return thread detail with removed userId in exact comment's downVotesBy property
+    when given by NEUTRALIZE_DOWN_VOTE_COMMENT action
 */
 
 const ActionType = {
@@ -248,6 +252,66 @@ describe('threadDetailReducer function', () => {
           return {
             ...commentItem,
             upVotesBy: commentItem.upVotesBy.filter((id) => id !== action.payload.userId),
+          };
+        }
+        return commentItem;
+      }),
+    };
+
+    expect(actualState).toEqual(expectedState);
+  });
+
+  it('should return thread detail which contains userId in exact comment\'s downVotesBy property when given by DOWN_VOTE_COMMENT action', () => {
+    const initialState = threadDetail;
+    const action = {
+      type: ActionType.DOWN_VOTE_COMMENT,
+      payload: {
+        commentId,
+        userId,
+      },
+    };
+
+    const actualState = threadDetailReducer(initialState, action);
+    const expectedState = {
+      ...initialState,
+      comments: initialState.comments.map((commentItem) => {
+        if (commentItem.id === action.payload.commentId) {
+          return {
+            ...commentItem,
+            downVotesBy: [...commentItem.downVotesBy, action.payload.userId],
+          };
+        }
+        return commentItem;
+      }),
+    };
+
+    expect(actualState).toEqual(expectedState);
+  });
+
+  it('should return thread detail with removed userId in exact comment\'s downVotesBy property when given by NEUTRALIZE_DOWN_VOTE_COMMENT action', () => {
+    const initialState = {
+      ...threadDetail,
+      comments: [{
+        ...threadDetail.comments[0],
+        downVotesBy: [...threadDetail.comments[0].downVotesBy, userId],
+      }],
+    };
+    const action = {
+      type: ActionType.NEUTRALIZE_DOWN_VOTE_COMMENT,
+      payload: {
+        commentId,
+        userId,
+      },
+    };
+
+    const actualState = threadDetailReducer(initialState, action);
+    const expectedState = {
+      ...initialState,
+      comments: initialState.comments.map((commentItem) => {
+        if (commentItem.id === action.payload.commentId) {
+          return {
+            ...commentItem,
+            downVotesBy: commentItem.downVotesBy.filter((id) => id !== action.payload.userId),
           };
         }
         return commentItem;
