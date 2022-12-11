@@ -99,11 +99,12 @@ describe('threadDetailReducer function', () => {
     };
 
     const actualState = threadDetailReducer(initialState, action);
-
-    expect(actualState).toEqual({
+    const expectedState = {
       ...initialState,
       comments: [...initialState.comments, action.payload.comment],
-    });
+    };
+
+    expect(actualState).toEqual(expectedState);
   });
 
   it('should return thread detail which contains userId in upVotesBy property when given by UP_VOTE_THREAD_DETAIL action', () => {
@@ -116,10 +117,11 @@ describe('threadDetailReducer function', () => {
     };
 
     const actualState = threadDetailReducer(initialState, action);
-
-    expect(actualState).toEqual({
+    const expectedState = {
       ...initialState,
       upVotesBy: [...initialState.upVotesBy, action.payload.userId],
-    });
+    };
+
+    expect(actualState).toEqual(expectedState);
   });
 });
