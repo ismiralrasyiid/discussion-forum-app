@@ -206,15 +206,10 @@ describe('threadDetailReducer function', () => {
     const actualState = threadDetailReducer(initialState, action);
     const expectedState = {
       ...initialState,
-      comments: initialState.comments.map((commentItem) => {
-        if (commentItem.id === action.payload.commentId) {
-          return {
-            ...commentItem,
-            upVotesBy: [...commentItem.upVotesBy, action.payload.userId],
-          };
-        }
-        return commentItem;
-      }),
+      comments: [{
+        ...initialState.comments[0],
+        upVotesBy: [...initialState.comments[0].upVotesBy, action.payload.userId],
+      }],
     };
 
     expect(actualState).toEqual(expectedState);
@@ -254,15 +249,10 @@ describe('threadDetailReducer function', () => {
     const actualState = threadDetailReducer(initialState, action);
     const expectedState = {
       ...initialState,
-      comments: initialState.comments.map((commentItem) => {
-        if (commentItem.id === action.payload.commentId) {
-          return {
-            ...commentItem,
-            downVotesBy: [...commentItem.downVotesBy, action.payload.userId],
-          };
-        }
-        return commentItem;
-      }),
+      comments: [{
+        ...initialState.comments[0],
+        downVotesBy: [...initialState.comments[0].downVotesBy, action.payload.userId],
+      }],
     };
 
     expect(actualState).toEqual(expectedState);
