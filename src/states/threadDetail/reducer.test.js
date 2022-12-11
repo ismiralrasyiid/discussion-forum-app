@@ -13,6 +13,8 @@ import threadDetailReducer from './reducer';
     when given by DOWN_VOTE_THREAD_DETAIL action
   - should return thread detail with removed userId from downVotesBy property
   when given by NEUTRALIZE_DOWN_VOTE_THREAD_DETAIL action
+  - should return thread detail which contains userId in exact comment's upVotesBy property
+    when given by UP_VOTE_COMMENT action
 */
 
 const ActionType = {
@@ -69,6 +71,7 @@ const comment = {
   },
 };
 const userId = 'tester101';
+const commentId = 'comment-1';
 
 describe('threadDetailReducer function', () => {
   it('should return the initial state when given by unknown action', () => {
@@ -187,6 +190,33 @@ describe('threadDetailReducer function', () => {
     const expectedState = {
       ...initialState,
       downVotesBy: initialState.downVotesBy.filter((id) => id !== action.payload.userId),
+    };
+
+    expect(actualState).toEqual(expectedState);
+  });
+
+  it('should return thread detail which contains userId in exact comment\'s upVotesBy property when given by UP_VOTE_COMMENT action', () => {
+    const initialState = threadDetail;
+    const action = {
+      type: ActionType.UP_VOTE_COMMENT,
+      payload: {
+        commentId,
+        userId,
+      },
+    };
+
+    const actualState = threadDetailReducer(initialState, action);
+    const expectedState = {
+      ...initialState,
+      comments: initialState.comments.map((commentItem) => {
+        if (commentItem.id === action.payload.commentId) {
+          return {
+            ...commentItem,
+            upVotesBy: [...commentItem.upVotesBy, action.payload.userId],
+          };
+        }
+        return commentItem;
+      }),
     };
 
     expect(actualState).toEqual(expectedState);
