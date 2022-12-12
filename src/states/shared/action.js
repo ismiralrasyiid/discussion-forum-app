@@ -21,14 +21,14 @@ function fetchThreadsAndUsers() {
   };
 }
 
-function fetchCategories(store) {
-  return async (dispatch) => {
+function fetchCategories() {
+  return async (dispatch, getState) => {
     dispatch(showLoading());
 
     try {
       const threads = await api.getAllThreads();
       threads.forEach((thread) => {
-        const currentCategories = store.getState().categories;
+        const currentCategories = getState().categories;
         const isNewCategory = currentCategories.some((category) => category === thread.category);
         if (!isNewCategory) {
           const newCategories = [...currentCategories, thread.category];
