@@ -74,10 +74,11 @@ describe('fetchCategories thunk', () => {
 
     await fetchCategories()(dispatch, getState);
 
-    expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(getState).toHaveBeenCalled();
-    expect(dispatch).not.toHaveBeenCalledWith(setCategoriesActionCreator(duplicationCategories));
+    expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
+    expect(dispatch).not.toHaveBeenCalledWith(setCategoriesActionCreator(duplicationCategories));
+    expect(dispatch).toHaveBeenCalledTimes(2);
   });
 
   it('should dispatch action correctly when data fetching rejects request', async () => {
