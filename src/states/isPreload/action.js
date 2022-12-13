@@ -40,4 +40,4 @@ function preloadingApp() {
   };
 }
 
-export { ActionType, preloadingApp };
+export { ActionType, preloadingApp, setIsPreloadActionCreator };
