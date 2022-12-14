@@ -6,7 +6,9 @@ import { registerAccount } from './action';
 /*
   registerAccount thunk
   - should dispatch action correctly when data fetching success
+    (show loading, fetch register api, show success message, hide loading)
   - should dispatch action correctly when data fetching fail
+    (show loading, fetch register api, show error message, hide loading)
 */
 
 const registerData = {

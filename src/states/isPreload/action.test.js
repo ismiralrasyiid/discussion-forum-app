@@ -8,7 +8,10 @@ import { preloadingApp, setIsPreloadActionCreator } from './action';
 /*
   preloadingApp thunk
   - should dispatch action correctly when data fetching success
+    (show loading, fetch auth user api, set auth user, set preload off, hide loading)
   - should dispatch action correctly when data fetching fail
+    (show loading, fetch auth user api, delete auth user,
+      delete access token, set preload off, hide loading)
 */
 
 const user = {

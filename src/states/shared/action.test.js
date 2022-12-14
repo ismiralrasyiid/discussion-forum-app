@@ -7,8 +7,11 @@ import { fetchCategories } from './action';
 /*
   fetchCategories thunk
   - should dispatch action correctly when data fetching resolves new category
+    (show loading, fetch threads api, set new categories, hide loading)
   - should dispatch action correctly when data fetching resolves no new category
+    (show loading, fetch threads api, make sure not set category duplication, hide loading)
   - should dispatch action correctly when data fetching rejects request
+    (show loading, fetch threads api, show error message, hide loading)
 */
 
 const threadsWithNewCategory = [
