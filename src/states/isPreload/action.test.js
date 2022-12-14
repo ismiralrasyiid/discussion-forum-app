@@ -10,7 +10,7 @@ import { preloadingApp, setIsPreloadActionCreator } from './action';
   - should dispatch action correctly when data fetching success
     (show loading, fetch auth user api, set auth user, set preload off, hide loading)
   - should dispatch action correctly when data fetching fail
-    (show loading, fetch auth user api, delete auth user,
+    (show loading, fetch auth user api, remove auth user,
       delete access token, set preload off, hide loading)
 */
 
@@ -31,6 +31,8 @@ describe('preloadingApp thunk', () => {
   });
 
   it('should dispatch action correctly when data fetching success', async () => {
+    const actionForSetAuthUser = setAuthUserActionCreator(user);
+    const actionForSetIsPreloadOff = setIsPreloadActionCreator(false);
     api.getOwnProfile = () => user;
     const dispatch = jest.fn();
 
@@ -38,11 +40,13 @@ describe('preloadingApp thunk', () => {
 
     expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
-    expect(dispatch).toHaveBeenCalledWith(setAuthUserActionCreator(user));
-    expect(dispatch).toHaveBeenCalledWith(setIsPreloadActionCreator(false));
+    expect(dispatch).toHaveBeenCalledWith(actionForSetAuthUser);
+    expect(dispatch).toHaveBeenCalledWith(actionForSetIsPreloadOff);
   });
 
   it('should dispatch action correctly when data fetching fail', async () => {
+    const actionForRemoveAuthUser = setAuthUserActionCreator(null);
+    const actionForSetIsPreloadOff = setIsPreloadActionCreator(false);
     api.getOwnProfile = () => {
       throw new Error(message);
     };
@@ -53,10 +57,10 @@ describe('preloadingApp thunk', () => {
 
     expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
-    expect(dispatch).toHaveBeenCalledWith(setAuthUserActionCreator(null));
+    expect(dispatch).toHaveBeenCalledWith(actionForRemoveAuthUser);
     expect(putAccessToken).toBeCalledWith('');
     expect(toast.error).toHaveBeenCalledWith(FAILED_PRELOAD_NOTIFICATION);
-    expect(dispatch).toHaveBeenCalledWith(setIsPreloadActionCreator(false));
+    expect(dispatch).toHaveBeenCalledWith(actionForSetIsPreloadOff);
   });
 
   afterEach(() => {

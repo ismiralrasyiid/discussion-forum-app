@@ -9,7 +9,7 @@ import { fetchCategories } from './action';
   - should dispatch action correctly when data fetching resolves new category
     (show loading, fetch threads api, set new categories, hide loading)
   - should dispatch action correctly when data fetching resolves no new category
-    (show loading, fetch threads api, make sure not set category duplication, hide loading)
+    (show loading, fetch threads api, avoid setting category duplication, hide loading)
   - should dispatch action correctly when data fetching rejects request
     (show loading, fetch threads api, show error message, hide loading)
 */
@@ -54,33 +54,33 @@ describe('fetchCategories thunk', () => {
   });
 
   it('should dispatch action correctly when data fetching resolves new category', async () => {
+    const actionForNewCategories = setCategoriesActionCreator(newCategories);
     api.getAllThreads = () => threadsWithNewCategory;
     const dispatch = jest.fn();
-    const getState = jest.fn(() => ({
+    const getState = () => ({
       categories: initialCategories,
-    }));
+    });
 
     await fetchCategories()(dispatch, getState);
 
     expect(dispatch).toHaveBeenCalledWith(showLoading());
-    expect(getState).toHaveBeenCalled();
-    expect(dispatch).toHaveBeenCalledWith(setCategoriesActionCreator(newCategories));
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
+    expect(dispatch).toHaveBeenCalledWith(actionForNewCategories);
   });
 
   it('should dispatch action correctly when data fetching resolves no new category', async () => {
+    const avoidedAction = setCategoriesActionCreator(duplicationCategories);
     api.getAllThreads = () => threadsWithoutNewCategory;
     const dispatch = jest.fn();
-    const getState = jest.fn(() => ({
+    const getState = () => ({
       categories: initialCategories,
-    }));
+    });
 
     await fetchCategories()(dispatch, getState);
 
-    expect(getState).toHaveBeenCalled();
     expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
-    expect(dispatch).not.toHaveBeenCalledWith(setCategoriesActionCreator(duplicationCategories));
+    expect(dispatch).not.toHaveBeenCalledWith(avoidedAction);
     expect(dispatch).toHaveBeenCalledTimes(2);
   });
 
