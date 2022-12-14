@@ -190,4 +190,7 @@ export {
   fetchNeutralizeUpVoteThread,
   fetchDownVoteThread,
   fetchNeutralizeDownVoteThread,
+  upVoteThreadActionCreator,
+  neutralizeUpVoteThreadActionCreator,
+  neutralizeDownVoteThreadActionCreator,
 };
