@@ -31,8 +31,6 @@ describe('preloadingApp thunk', () => {
   });
 
   it('should dispatch action correctly when data fetching success', async () => {
-    const actionForSetAuthUser = setAuthUserActionCreator(user);
-    const actionForSetIsPreloadOff = setIsPreloadActionCreator(false);
     api.getOwnProfile = () => user;
     const dispatch = jest.fn();
 
@@ -40,13 +38,11 @@ describe('preloadingApp thunk', () => {
 
     expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
-    expect(dispatch).toHaveBeenCalledWith(actionForSetAuthUser);
-    expect(dispatch).toHaveBeenCalledWith(actionForSetIsPreloadOff);
+    expect(dispatch).toHaveBeenCalledWith(setAuthUserActionCreator(user));
+    expect(dispatch).toHaveBeenCalledWith(setIsPreloadActionCreator(false));
   });
 
   it('should dispatch action correctly when data fetching fail', async () => {
-    const actionForRemoveAuthUser = setAuthUserActionCreator(null);
-    const actionForSetIsPreloadOff = setIsPreloadActionCreator(false);
     api.getOwnProfile = () => {
       throw new Error(message);
     };
@@ -57,10 +53,10 @@ describe('preloadingApp thunk', () => {
 
     expect(dispatch).toHaveBeenCalledWith(showLoading());
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
-    expect(dispatch).toHaveBeenCalledWith(actionForRemoveAuthUser);
+    expect(dispatch).toHaveBeenCalledWith(setAuthUserActionCreator(null));
     expect(putAccessToken).toBeCalledWith('');
     expect(toast.error).toHaveBeenCalledWith(FAILED_PRELOAD_NOTIFICATION);
-    expect(dispatch).toHaveBeenCalledWith(actionForSetIsPreloadOff);
+    expect(dispatch).toHaveBeenCalledWith(setIsPreloadActionCreator(false));
   });
 
   afterEach(() => {
