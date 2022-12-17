@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
@@ -15,9 +16,8 @@ import { fetchThreads, fetchUpVoteThread, fetchNeutralizeUpVoteThread } from '..
 /*
   UpVote Component should be integrated with redux store
   - should not render UpVote component if user isnt authed
-  - should render UpVote component, invoke upVote handler when clicked, show correct numbers of vote
-  - should render UpVote component, invoke neutralizeUpVote handler when clicked,
-    show correct numbers of vote
+  - should invoke upVote handler when clicked, show correct numbers of vote
+  - should invoke neutralizeUpVote handler when clicked, show correct numbers of vote
 */
 
 const authUser = {
@@ -51,6 +51,7 @@ const threads = [
   },
 ];
 const threadId = 'thread-1';
+
 const store = configureStore({
   reducer: {
     isPreload: isPreloadReducer,
@@ -58,6 +59,24 @@ const store = configureStore({
     threads: threadsReducer,
   },
 });
+function UpVoteWrapper({
+  upVoteHandler,
+  neutralizeUpVoteHandler,
+}) {
+  return (
+    <Provider store={store}>
+      <UpVote
+        upVotesBy={store.getState().threads[0].upVotesBy}
+        upVoteHandler={upVoteHandler}
+        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+      />
+    </Provider>
+  );
+}
+UpVoteWrapper.propTypes = {
+  upVoteHandler: PropTypes.func.isRequired,
+  neutralizeUpVoteHandler: PropTypes.func.isRequired,
+};
 
 describe('UpVote Component should be integrated with redux store', () => {
   beforeAll(() => {
@@ -69,26 +88,23 @@ describe('UpVote Component should be integrated with redux store', () => {
   it('should not render UpVote component if user isnt authed', async () => {
     const upVoteHandler = () => ({});
     const neutralizeUpVoteHandler = () => ({});
-    api.getOwnProfile = () => null;
     api.getAllThreads = () => threads;
+    api.getOwnProfile = () => null;
     await store.dispatch(fetchThreads());
     await store.dispatch(preloadingApp());
 
     render(
-      <Provider store={store}>
-        <UpVote
-          upVotesBy={store.getState().threads[0].upVotesBy}
-          upVoteHandler={upVoteHandler}
-          neutralizeUpVoteHandler={neutralizeUpVoteHandler}
-        />
-      </Provider>,
+      <UpVoteWrapper
+        upVoteHandler={upVoteHandler}
+        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+      />,
     );
     const UpVoteElement = document.querySelector('button');
 
     expect(UpVoteElement).toBeNull();
   });
 
-  it('should render UpVote component, invoke upVote handler when clicked, show correct numbers of vote', async () => {
+  it('should invoke upVote handler when clicked, show correct numbers of vote', async () => {
     const neutralizeUpVoteHandler = () => ({});
     const upVoteHandler = jest.fn(() => store.dispatch(fetchUpVoteThread(threadId)));
     api.getOwnProfile = () => authUser;
@@ -96,25 +112,19 @@ describe('UpVote Component should be integrated with redux store', () => {
     await store.dispatch(preloadingApp());
 
     render(
-      <Provider store={store}>
-        <UpVote
-          upVotesBy={store.getState().threads[0].upVotesBy}
-          upVoteHandler={upVoteHandler}
-          neutralizeUpVoteHandler={neutralizeUpVoteHandler}
-        />
-      </Provider>,
+      <UpVoteWrapper
+        upVoteHandler={upVoteHandler}
+        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+      />,
     );
     const NumbersOfVoteBeforeClicked = document.querySelector('p');
     const UpVoteButton = screen.getByTitle('suka');
     userEvent.click(UpVoteButton);
     render(
-      <Provider store={store}>
-        <UpVote
-          upVotesBy={store.getState().threads[0].upVotesBy}
-          upVoteHandler={upVoteHandler}
-          neutralizeUpVoteHandler={neutralizeUpVoteHandler}
-        />
-      </Provider>,
+      <UpVoteWrapper
+        upVoteHandler={upVoteHandler}
+        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+      />,
     );
     const NumbersOfVoteAfterClicked = document.querySelectorAll('p')[1];
 
@@ -123,7 +133,7 @@ describe('UpVote Component should be integrated with redux store', () => {
     expect(NumbersOfVoteAfterClicked).toHaveTextContent(4);
   });
 
-  it('should render UpVote component, invoke neutralizeUpVote handler when clicked, show correct numbers of vote', () => {
+  it('should invoke neutralizeUpVote handler when clicked, show correct numbers of vote', () => {
     const neutralizeUpVoteHandler = jest.fn(
       () => store.dispatch(fetchNeutralizeUpVoteThread(threadId)),
     );
@@ -131,25 +141,19 @@ describe('UpVote Component should be integrated with redux store', () => {
     api.neutralVoteThread = () => ({});
 
     render(
-      <Provider store={store}>
-        <UpVote
-          upVotesBy={store.getState().threads[0].upVotesBy}
-          upVoteHandler={upVoteHandler}
-          neutralizeUpVoteHandler={neutralizeUpVoteHandler}
-        />
-      </Provider>,
+      <UpVoteWrapper
+        upVoteHandler={upVoteHandler}
+        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+      />,
     );
     const NumbersOfVoteBeforeClicked = document.querySelector('p');
     const UpVoteButton = screen.getByTitle('suka');
     userEvent.click(UpVoteButton);
     render(
-      <Provider store={store}>
-        <UpVote
-          upVotesBy={store.getState().threads[0].upVotesBy}
-          upVoteHandler={upVoteHandler}
-          neutralizeUpVoteHandler={neutralizeUpVoteHandler}
-        />
-      </Provider>,
+      <UpVoteWrapper
+        upVoteHandler={upVoteHandler}
+        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+      />,
     );
     const NumbersOfVoteAfterClicked = document.querySelectorAll('p')[1];
 
