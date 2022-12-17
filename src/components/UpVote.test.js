@@ -53,6 +53,7 @@ const threads = [
   },
 ];
 const threadId = 'thread-1';
+const message = 'Request failed';
 
 const store = configureStore({
   reducer: {
@@ -83,6 +84,16 @@ UpVoteWrapper.propTypes = {
 describe('UpVote Component should be integrated with redux store', () => {
   const dummyFunction = () => ({});
 
+  const renderTheComponent = ({
+    upVoteHandler = dummyFunction,
+    neutralizeUpVoteHandler = dummyFunction,
+  }) => render(
+    <UpVoteWrapper
+      upVoteHandler={upVoteHandler}
+      neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+    />,
+  );
+
   beforeAll(() => {
     api.getOwnProfileBackup = api.getOwnProfile;
     api.getAllThreadsBackup = api.getAllThreads;
@@ -95,68 +106,96 @@ describe('UpVote Component should be integrated with redux store', () => {
     await store.dispatch(fetchThreads());
     await store.dispatch(preloadingApp());
 
-    render(
-      <UpVoteWrapper
-        upVoteHandler={dummyFunction}
-        neutralizeUpVoteHandler={dummyFunction}
-      />,
-    );
+    renderTheComponent({});
     const UpVoteElement = document.querySelector('button');
 
     expect(UpVoteElement).toBeNull();
   });
 
-  it('should show correct numbers of vote if upVote api request success', async () => {
+  it('should revert action if upVote api request failed', async () => {
+    // Arrange
     const upVoteHandler = jest.fn(() => store.dispatch(fetchUpVoteThread(threadId)));
     api.getOwnProfile = () => authUser;
-    api.upVoteThread = () => ({});
+    api.upVoteThread = () => {
+      throw new Error(message);
+    };
     await store.dispatch(preloadingApp());
 
-    render(
-      <UpVoteWrapper
-        upVoteHandler={upVoteHandler}
-        neutralizeUpVoteHandler={dummyFunction}
-      />,
-    );
+    // Action
+    renderTheComponent({ upVoteHandler });
     const NumbersOfVoteBeforeClicked = document.querySelector('p');
     const UpVoteButton = screen.getByTitle('suka');
     userEvent.click(UpVoteButton);
-    render(
-      <UpVoteWrapper
-        upVoteHandler={upVoteHandler}
-        neutralizeUpVoteHandler={dummyFunction}
-      />,
-    );
+
+    renderTheComponent({ upVoteHandler });
     const NumbersOfVoteAfterClicked = document.querySelectorAll('p')[1];
 
+    // Assert
+    expect(NumbersOfVoteBeforeClicked).toHaveTextContent(3);
+    expect(upVoteHandler).toHaveBeenCalled();
+    expect(NumbersOfVoteAfterClicked).toHaveTextContent(3);
+  });
+
+  it('should show correct numbers of vote if upVote api request success', async () => {
+    // Arrange
+    const upVoteHandler = jest.fn(() => store.dispatch(fetchUpVoteThread(threadId)));
+    api.upVoteThread = () => ({});
+
+    // action
+    renderTheComponent({ upVoteHandler });
+    const NumbersOfVoteBeforeClicked = document.querySelector('p');
+    const UpVoteButton = screen.getByTitle('suka');
+    userEvent.click(UpVoteButton);
+
+    renderTheComponent({ upVoteHandler });
+    const NumbersOfVoteAfterClicked = document.querySelectorAll('p')[1];
+
+    // Assert
     expect(NumbersOfVoteBeforeClicked).toHaveTextContent(3);
     expect(upVoteHandler).toHaveBeenCalled();
     expect(NumbersOfVoteAfterClicked).toHaveTextContent(4);
   });
 
+  it('should revert action if neutralizeVote api request failed', () => {
+    const neutralizeUpVoteHandler = jest.fn(
+      () => store.dispatch(fetchNeutralizeUpVoteThread(threadId)),
+    );
+    api.neutralVoteThread = () => {
+      throw new Error(message);
+    };
+
+    // Action
+    renderTheComponent({ neutralizeUpVoteHandler });
+    const NumbersOfVoteBeforeClicked = document.querySelector('p');
+    const UpVoteButton = screen.getByTitle('suka');
+    userEvent.click(UpVoteButton);
+
+    renderTheComponent({ neutralizeUpVoteHandler });
+    const NumbersOfVoteAfterClicked = document.querySelectorAll('p')[1];
+
+    // Assert
+    expect(NumbersOfVoteBeforeClicked).toHaveTextContent(4);
+    expect(neutralizeUpVoteHandler).toHaveBeenCalled();
+    expect(NumbersOfVoteAfterClicked).toHaveTextContent(4);
+  });
+
   it('should show correct numbers of vote if neutralizeVote api request success', () => {
+    // Arrange
     const neutralizeUpVoteHandler = jest.fn(
       () => store.dispatch(fetchNeutralizeUpVoteThread(threadId)),
     );
     api.neutralVoteThread = () => ({});
 
-    render(
-      <UpVoteWrapper
-        upVoteHandler={dummyFunction}
-        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
-      />,
-    );
+    // Action
+    renderTheComponent({ neutralizeUpVoteHandler });
     const NumbersOfVoteBeforeClicked = document.querySelector('p');
     const UpVoteButton = screen.getByTitle('suka');
     userEvent.click(UpVoteButton);
-    render(
-      <UpVoteWrapper
-        upVoteHandler={dummyFunction}
-        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
-      />,
-    );
+
+    renderTheComponent({ neutralizeUpVoteHandler });
     const NumbersOfVoteAfterClicked = document.querySelectorAll('p')[1];
 
+    // Assert
     expect(NumbersOfVoteBeforeClicked).toHaveTextContent(4);
     expect(neutralizeUpVoteHandler).toHaveBeenCalled();
     expect(NumbersOfVoteAfterClicked).toHaveTextContent(3);
