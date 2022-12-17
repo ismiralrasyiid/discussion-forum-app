@@ -16,8 +16,10 @@ import { fetchThreads, fetchUpVoteThread, fetchNeutralizeUpVoteThread } from '..
 /*
   UpVote Component should be integrated with redux store
   - should not render UpVote component if user isnt authed
-  - should invoke upVote handler when clicked, show correct numbers of vote
-  - should invoke neutralizeUpVote handler when clicked, show correct numbers of vote
+  - should revert action if upVote api request failed
+  - should show correct numbers of vote if upVote api request success
+  - should revert action if neutralizeVote api request failed
+  - should show correct numbers of vote if neutralizeVote api request success
 */
 
 const authUser = {
@@ -79,6 +81,8 @@ UpVoteWrapper.propTypes = {
 };
 
 describe('UpVote Component should be integrated with redux store', () => {
+  const dummyFunction = () => ({});
+
   beforeAll(() => {
     api.getOwnProfileBackup = api.getOwnProfile;
     api.getAllThreadsBackup = api.getAllThreads;
@@ -86,8 +90,6 @@ describe('UpVote Component should be integrated with redux store', () => {
   });
 
   it('should not render UpVote component if user isnt authed', async () => {
-    const upVoteHandler = () => ({});
-    const neutralizeUpVoteHandler = () => ({});
     api.getAllThreads = () => threads;
     api.getOwnProfile = () => null;
     await store.dispatch(fetchThreads());
@@ -95,8 +97,8 @@ describe('UpVote Component should be integrated with redux store', () => {
 
     render(
       <UpVoteWrapper
-        upVoteHandler={upVoteHandler}
-        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+        upVoteHandler={dummyFunction}
+        neutralizeUpVoteHandler={dummyFunction}
       />,
     );
     const UpVoteElement = document.querySelector('button');
@@ -104,8 +106,7 @@ describe('UpVote Component should be integrated with redux store', () => {
     expect(UpVoteElement).toBeNull();
   });
 
-  it('should invoke upVote handler when clicked, show correct numbers of vote', async () => {
-    const neutralizeUpVoteHandler = () => ({});
+  it('should show correct numbers of vote if upVote api request success', async () => {
     const upVoteHandler = jest.fn(() => store.dispatch(fetchUpVoteThread(threadId)));
     api.getOwnProfile = () => authUser;
     api.upVoteThread = () => ({});
@@ -114,7 +115,7 @@ describe('UpVote Component should be integrated with redux store', () => {
     render(
       <UpVoteWrapper
         upVoteHandler={upVoteHandler}
-        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+        neutralizeUpVoteHandler={dummyFunction}
       />,
     );
     const NumbersOfVoteBeforeClicked = document.querySelector('p');
@@ -123,7 +124,7 @@ describe('UpVote Component should be integrated with redux store', () => {
     render(
       <UpVoteWrapper
         upVoteHandler={upVoteHandler}
-        neutralizeUpVoteHandler={neutralizeUpVoteHandler}
+        neutralizeUpVoteHandler={dummyFunction}
       />,
     );
     const NumbersOfVoteAfterClicked = document.querySelectorAll('p')[1];
@@ -133,16 +134,15 @@ describe('UpVote Component should be integrated with redux store', () => {
     expect(NumbersOfVoteAfterClicked).toHaveTextContent(4);
   });
 
-  it('should invoke neutralizeUpVote handler when clicked, show correct numbers of vote', () => {
+  it('should show correct numbers of vote if neutralizeVote api request success', () => {
     const neutralizeUpVoteHandler = jest.fn(
       () => store.dispatch(fetchNeutralizeUpVoteThread(threadId)),
     );
-    const upVoteHandler = () => ({});
     api.neutralVoteThread = () => ({});
 
     render(
       <UpVoteWrapper
-        upVoteHandler={upVoteHandler}
+        upVoteHandler={dummyFunction}
         neutralizeUpVoteHandler={neutralizeUpVoteHandler}
       />,
     );
@@ -151,7 +151,7 @@ describe('UpVote Component should be integrated with redux store', () => {
     userEvent.click(UpVoteButton);
     render(
       <UpVoteWrapper
-        upVoteHandler={upVoteHandler}
+        upVoteHandler={dummyFunction}
         neutralizeUpVoteHandler={neutralizeUpVoteHandler}
       />,
     );
