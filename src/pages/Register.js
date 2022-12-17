@@ -8,11 +8,10 @@ import useInput from '../hooks/useInput';
 import { registerAccount } from '../states/authUser/action';
 
 function Register() {
-  const defaultInput = '';
-  const [name, onNameChangeHandler] = useInput(defaultInput);
-  const [email, onEmailChangeHandler] = useInput(defaultInput);
-  const [password, onPasswordChangeHandler] = useInput(defaultInput);
-  const [confirmPassword, onConfirmPasswordChangeHandler] = useInput(defaultInput);
+  const [name, onNameChangeHandler] = useInput();
+  const [email, onEmailChangeHandler] = useInput();
+  const [password, onPasswordChangeHandler] = useInput();
+  const [confirmPassword, onConfirmPasswordChangeHandler] = useInput();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

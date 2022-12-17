@@ -6,9 +6,8 @@ import useInput from '../hooks/useInput';
 import { fetchAuthUser } from '../states/authUser/action';
 
 function Login() {
-  const defaultInput = '';
-  const [email, onEmailChangeHandler] = useInput(defaultInput);
-  const [password, onPasswordChangeHandler] = useInput(defaultInput);
+  const [email, onEmailChangeHandler] = useInput();
+  const [password, onPasswordChangeHandler] = useInput();
   const dispatch = useDispatch();
 
   const onSubmitLoginHandler = (event) => {
