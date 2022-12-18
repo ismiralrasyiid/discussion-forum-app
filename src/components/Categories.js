@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import CategoryItem from './CatergoryItem';
+import CategoryItem from './CategoryItem';
 import Loading from './Loading';
 
 function Categories() {
