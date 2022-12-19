@@ -19,7 +19,7 @@ function Header() {
   return (
     <header>
       <h1>
-        <Link to="/">Forum Diskusi Mobile Legends</Link>
+        <Link to="/">Forum Diskusi React</Link>
       </h1>
       {authUser
         ? (

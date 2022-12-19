@@ -8,7 +8,7 @@ function Leaderboards() {
 
   return (
     <aside className="leaderboards">
-      <h2>Top global zilong</h2>
+      <h2>Top Aktivis</h2>
       <p>Pengguna</p>
       <p>Skor</p>
       {leaderboards ? leaderboards.map((leaderboard) => (
