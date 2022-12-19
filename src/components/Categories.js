@@ -8,7 +8,7 @@ function Categories() {
 
   return (
     <aside className="categories">
-      <h2>Hero yang lagi meta</h2>
+      <h2>Kategori Diskusi</h2>
       {categories[0] ? categories.map((category) => (
         <CategoryItem key={category} category={category} />
       )) : <Loading />}
