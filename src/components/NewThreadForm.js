@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NewThreadButton } from './styled/buttons';
 
 function NewThreadForm({
   title,
@@ -29,7 +30,7 @@ function NewThreadForm({
         value={body}
         onChange={onBodyChangeHandler}
       />
-      <button type="submit">Buat</button>
+      <NewThreadButton type="submit">Buat</NewThreadButton>
     </form>
   );
 }

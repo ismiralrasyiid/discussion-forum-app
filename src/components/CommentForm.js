@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { CommentButton } from './styled/buttons';
 
 function CommentForm({
   content,
@@ -16,7 +17,7 @@ function CommentForm({
       {authUser ? (
         <>
           <textarea id="addComment" value={content} onChange={onContentChangeHandler} />
-          <button type="submit">Kirim</button>
+          <CommentButton type="submit">Kirim</CommentButton>
         </>
       ) : (
         <p style={({ marginTop: '15px' })}>

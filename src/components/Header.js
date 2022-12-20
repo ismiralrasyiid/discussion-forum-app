@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../states/authUser/action';
+import { NavButton } from './styled/buttons';
 
 function Header() {
   const LOGIN_PAGE_ROUTE = '/login';
@@ -26,7 +27,7 @@ function Header() {
           <nav>
             <img src={authUser.avatar} alt="avatar" />
             <span>{authUser.name}</span>
-            <button type="button" onClick={logoutHandler}>Logout</button>
+            <NavButton type="button" onClick={logoutHandler}>Logout</NavButton>
           </nav>
         ) : null}
     </header>
