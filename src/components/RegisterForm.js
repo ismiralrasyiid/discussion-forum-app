@@ -2,6 +2,7 @@ import React from 'react';
 import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { LoginRegisterButton } from './styled/buttons';
 
 function RegisterForm({
   name,
@@ -54,7 +55,7 @@ function RegisterForm({
           value={confirmPassword}
           onChange={onConfirmPasswordChangeHandler}
         />
-        <button type="submit">Daftar</button>
+        <LoginRegisterButton type="submit">Daftar</LoginRegisterButton>
         <p>
           Sudah punya akun?&nbsp;
           <Link to="/login">Masuk di sini</Link>

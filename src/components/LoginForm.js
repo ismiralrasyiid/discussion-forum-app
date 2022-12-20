@@ -2,6 +2,7 @@ import React from 'react';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { LoginRegisterButton } from './styled/buttons';
 
 function LoginForm({
   email,
@@ -32,7 +33,7 @@ function LoginForm({
           value={password}
           onChange={onPasswordChangeHandler}
         />
-        <button type="submit">Masuk</button>
+        <LoginRegisterButton type="submit">Masuk</LoginRegisterButton>
         <p>
           Belum punya akun?&nbsp;
           <Link to="/register">Daftar di sini</Link>

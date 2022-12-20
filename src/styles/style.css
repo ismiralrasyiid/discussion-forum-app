@@ -90,17 +90,6 @@ header nav img{
   margin-right: 7px;
 }
 
-header nav button{
-  background-color: var(--dark-bg);
-  color: white;
-  transition: .25s;
-  padding: 5px;
-}
-
-header nav button:hover{
-  transform: scale(1.05);
-}
-
 .contents{
   margin: 0 auto;
   width: 1200px;
@@ -286,21 +275,6 @@ header nav button:hover{
   height: 150px;
 }
 
-.threadComments form button{
-  background-color: var(--dark-bg);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 2px;
-  display: block;
-  margin-inline: auto;
-  transition: .25s;
-}
-
-.threadComments form button:hover{
-  transform: scale(1.05);
-  text-decoration: underline;
-}
-
 .commentItem{
   display: flex;
   align-items: center;
@@ -388,38 +362,11 @@ header nav button:hover{
   height: 200px;
 }
 
-.create form button{
-  background-color: var(--dark-bg);
-  color: white;
-  margin-inline: auto;
-  border-radius: 2px;
-  padding: 5px 10px;
-  transition: .25s;
-}
-
-.create form button:hover{
-  transform: scale(1.05);
-  text-decoration: underline;
-}
-
 .loginPageNavigation{
   position: fixed;
   bottom: 40px;
   right: 50px;
   transition: .25s;
-}
-
-.loginPageNavigation button{
-  padding: 8px;
-  background-color: var(--dark-bg);
-  color: white;
-  display: flex;
-  align-items: center;
-  border-radius: 3px;
-}
-
-.loginPageNavigation button svg{
-  margin-right: 4px;
 }
 
 .createPageNavigation{
@@ -429,35 +376,11 @@ header nav button:hover{
   transition: .25s;
 }
 
-.createPageNavigation button{
-  padding: 8px;
-  background-color: var(--dark-bg);
-  color: white;
-  display: flex;
-  align-items: center;
-  border-radius: 3px;
-}
-
-.createPageNavigation button svg{
-  margin-right: 4px;
-}
-
 .toTopPageNavigation{
   position: fixed;
   bottom: 40px;
   right: 15px;
   transition: .25s;
-}
-
-.toTopPageNavigation button{
-  padding: 7px;
-  background-color: var(--dark-bg);
-  color: white;
-  font-size: 1.3em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 3px;
 }
 
 .loading{
@@ -518,18 +441,7 @@ header nav button:hover{
   margin: 7px 0;
   background-color: whitesmoke;
 }
-.loginRegister form button{
-  border: none;
-  padding: 7px 10px;
-  border-radius: 3px;
-  color: white;
-  cursor: pointer;
-  margin: 10px auto;
-  transition: .2s;
-}
-.loginRegister form button:hover{
-  transform: scale(1.07);
-}
+
 .loginRegister form p{
   margin: 7px 0;
   width: 100%;
@@ -543,9 +455,6 @@ header nav button:hover{
 }
 .loginRegister form input{
   border: 1px solid var(--dark-bg);
-}
-.loginRegister form button{
-  background-color: var(--dark-bg);
 }
 
 footer{
