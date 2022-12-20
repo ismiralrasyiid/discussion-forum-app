@@ -55,7 +55,6 @@ const LoginRegisterButton = styled(Button)`
   border: none;
   padding: 7px 10px;
   border-radius: 3px;
-  cursor: pointer;
   margin: 10px auto;
   transition: .2s;
   &:hover {

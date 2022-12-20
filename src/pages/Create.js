@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Contents from '../components/Contents';
+import Contents from '../components/styled/Contents';
 import NewThreadForm from '../components/NewThreadForm';
 import useInput from '../hooks/useInput';
 import { fetchCreateThread } from '../states/threads/action';

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Contents from '../components/Contents';
+import Contents from '../components/styled/Contents';
 import RegisterForm from '../components/RegisterForm';
 import useInput from '../hooks/useInput';
 import { registerAccount } from '../states/authUser/action';

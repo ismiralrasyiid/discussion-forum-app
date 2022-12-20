@@ -90,18 +90,6 @@ header nav img{
   margin-right: 7px;
 }
 
-.contents{
-  margin: 0 auto;
-  width: 1200px;
-  min-height: calc(100vh - 37px);
-  padding-top: 65px;
-  padding-bottom: 5px;
-  display: flex;
-  justify-content: center;
-  background-color: whitesmoke;
-  border-radius: 3px;
-}
-
 .categories, .leaderboards{
   padding: 15px 15px 40px;
   width: calc(22.5% - 10px);
@@ -474,10 +462,6 @@ footer p a{
 }
 
 @media only screen and (max-width: 1250px){
-  .contents{
-    flex-direction: column;
-    width: 660px;
-  }
   .categories, .threads, .leaderboards{
     width: 100%;
   }
@@ -495,9 +479,6 @@ footer p a{
 }
 
 @media only screen and (max-width: 680px) {
-  .contents{
-    width: 400px;
-  }
   .username{
     width: 300px;
   }

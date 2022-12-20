@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import Contents from '../components/Contents';
+import Contents from '../components/styled/Contents';
 import LoginForm from '../components/LoginForm';
 import useInput from '../hooks/useInput';
 import { fetchAuthUser } from '../states/authUser/action';

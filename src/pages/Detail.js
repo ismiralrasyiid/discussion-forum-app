@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Contents from '../components/Contents';
+import Contents from '../components/styled/Contents';
 import ThreadDetail from '../components/ThreadDetail';
 import { fetchThreadDetail, setThreadDetailActionCreator } from '../states/threadDetail/action';
 

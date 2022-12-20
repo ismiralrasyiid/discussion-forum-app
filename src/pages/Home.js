@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Categories from '../components/Categories';
-import Contents from '../components/Contents';
+import Contents from '../components/styled/Contents';
 import Leaderboards from '../components/Leaderboards';
 import Threads from '../components/Threads';
 import { fetchLeaderboards } from '../states/leaderboards/action';
