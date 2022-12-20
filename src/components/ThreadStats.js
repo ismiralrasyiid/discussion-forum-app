@@ -24,9 +24,9 @@ function ThreadStats({
   return (
     <div className="threadStats">
       <img src={avatar} alt="avatar" />
-      <p>{name}</p>
+      <p className="username">{name}</p>
       <FaClock />
-      <p>{postedAt(createdAt)}</p>
+      <p className="postedAt">{postedAt(createdAt)}</p>
       <UpVote
         upVotesBy={upVotesBy}
         upVoteHandler={upVoteHandler}

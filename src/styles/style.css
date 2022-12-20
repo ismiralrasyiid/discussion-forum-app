@@ -210,14 +210,14 @@ header nav img{
 }
 
 .threadStats > svg{
-  margin-right: 5px;
+  margin: 3px 5px 3px 0;
   color: var(--dark-bg-light);
 }
 
 .threadStats img{
   width: 30px;
   border-radius: 3px;
-  margin-right: 5px;
+  margin: 3px 5px 3px 0;
 }
 
 .threadStats .button{
@@ -225,7 +225,7 @@ header nav img{
 }
 
 .threadStats > p{
-  margin-right: 15px;
+  margin: 3px 15px 3px 0;
 }
 
 .threadDetail{
@@ -485,10 +485,25 @@ footer p a{
     margin: 15px 0;
     min-height: auto;
   }
+  .create{
+    min-height: calc(100vh - 69px);
+    width: 100%;
+  }
+  .threadDetail{
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 680px) {
   .contents{
     width: 400px;
+  }
+  .username{
+    width: 300px;
+  }
+  .postedAt{
+    width: 320px;
+    height: 30px;
+    line-height: 30px;
   }
 }
