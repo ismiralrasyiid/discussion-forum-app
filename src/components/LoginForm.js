@@ -19,7 +19,7 @@ function LoginForm({
           id="loginEmail"
           name="loginEmail"
           type="email"
-          placeholder="Email"
+          placeholder="Username"
           value={email}
           onChange={onEmailChangeHandler}
         />
