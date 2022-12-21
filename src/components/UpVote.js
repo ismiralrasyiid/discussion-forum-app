@@ -25,8 +25,17 @@ function UpVote({
 }
 
 UpVote.propTypes = {
+  /**
+   * Array of users who voted
+  */
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * Handler function
+  */
   upVoteHandler: PropTypes.func.isRequired,
+  /**
+   * Handler function
+  */
   neutralizeUpVoteHandler: PropTypes.func.isRequired,
 };
 
