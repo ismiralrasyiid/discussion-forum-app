@@ -1,11 +1,11 @@
 import authUserReducer from './reducer';
 
-/*
-  authUserReducer function
-  - should return the initial state when given by unknown action
-  - should return authUser when given by SET_AUTH_USER action
-  - should return null when given by UNSET_AUTH_USER action
-*/
+/**
+ *  authUserReducer function
+ *  - should return the initial state when given by unknown action
+ *  - should return authUser when given by SET_AUTH_USER action
+ *  - should return null when given by UNSET_AUTH_USER action
+ */
 
 const ActionType = {
   UNKNOWN: 'UNKNOWN',

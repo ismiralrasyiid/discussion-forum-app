@@ -7,12 +7,12 @@ import {
   upVoteThreadActionCreator,
 } from './action';
 
-/*
-  fetchUpVoteThread thunk
-  - should dispatch action correctly when data fetching success
-    (neutralize down vote, up vote, fetch api)
-  - should dispatch action correctly when data fetching fail
-    (neutralize down vote, up vote, fetch api, show error message, revert up vote)
+/**
+ * fetchUpVoteThread thunk
+ * - should dispatch action correctly when data fetching success
+ *   (neutralize down vote, up vote, fetch api)
+ * - should dispatch action correctly when data fetching fail
+ *   (neutralize down vote, up vote, fetch api, show error message, revert up vote)
 */
 
 const state = {

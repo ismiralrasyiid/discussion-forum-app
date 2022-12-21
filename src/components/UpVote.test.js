@@ -13,14 +13,14 @@ import { preloadingApp } from '../states/isPreload/action';
 import { api } from '../utils';
 import { fetchThreads, fetchUpVoteThread, fetchNeutralizeUpVoteThread } from '../states/threads/action';
 
-/*
-  UpVote Component should be integrated with redux store
-  - should not render UpVote component if user isnt authed
-  - should revert action if upVote api request failed
-  - should show correct numbers of vote if upVote api request success
-  - should revert action if neutralizeVote api request failed
-  - should show correct numbers of vote if neutralizeVote api request success
-*/
+/**
+ *  UpVote Component should be integrated with redux store
+ *  - should not render UpVote component if user isnt authed
+ *  - should revert action if upVote api request failed
+ *  - should show correct numbers of vote if upVote api request success
+ *  - should revert action if neutralizeVote api request failed
+ *  - should show correct numbers of vote if neutralizeVote api request success
+ */
 
 const authUser = {
   id: 'tester101',

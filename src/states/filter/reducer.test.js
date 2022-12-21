@@ -1,13 +1,13 @@
 import filterReducer from './reducer';
 
-/*
-  filterReducer function
-  - should return the initial state when given by unknown action
-  - should return a new category string when given by TOGGLE_FILTER action
-    if the initial state is different with the new category
-  - should return an empty string when given by TOGGLE_FILTER action
-    if the initial state is the same with the new category
-*/
+/**
+ *  filterReducer function
+ *  - should return the initial state when given by unknown action
+ *  - should return a new category string when given by TOGGLE_FILTER action
+ *    if the initial state is different with the new category
+ *  - should return an empty string when given by TOGGLE_FILTER action
+ *    if the initial state is the same with the new category
+ */
 
 const ActionType = {
   UNKNOWN: 'UNKNOWN',

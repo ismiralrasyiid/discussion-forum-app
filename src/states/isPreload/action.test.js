@@ -5,13 +5,13 @@ import { putAccessToken } from '../../utils/api/utils';
 import { setAuthUserActionCreator } from '../authUser/action';
 import { preloadingApp, setIsPreloadActionCreator } from './action';
 
-/*
-  preloadingApp thunk
-  - should dispatch action correctly when data fetching success
-    (show loading, fetch auth user api, set auth user, set preload off, hide loading)
-  - should dispatch action correctly when data fetching fail
-    (show loading, fetch auth user api, remove auth user,
-      delete access token, set preload off, hide loading)
+/**
+ * preloadingApp thunk
+ * - should dispatch action correctly when data fetching success
+ *   (show loading, fetch auth user api, set auth user, set preload off, hide loading)
+ * - should dispatch action correctly when data fetching fail
+ *   (show loading, fetch auth user api, remove auth user,
+ *     delete access token, set preload off, hide loading)
 */
 
 const user = {

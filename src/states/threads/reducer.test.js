@@ -1,19 +1,19 @@
 import threadsReducer from './reducer';
 
-/*
-  threadsReducer function
-  - should return the initial state when given by unknown action
-  - should return threads when given by SET_THREADS action
-  - should return threads with new thread when given by ADD_THREAD action
-  - should return threads which contains userId in exact thread's upVotesBy property
-    when given by UP_VOTE_THREAD action
-  - should return threads with removed userId in exact thread's upVotesBy property
-    when given by NEUTRALIZE_UP_VOTE_THREAD action
-  - should return threads which contains userId in exact thread's downVotesBy property
-    when given by DOWN_VOTE_THREAD action
-  - should return threads with removed userId in exact thread's downVotesBy property
-    when given by NEUTRALIZE_DOWN_VOTE_THREAD action
-*/
+/**
+ * threadsReducer function
+ * - should return the initial state when given by unknown action
+ * - should return threads when given by SET_THREADS action
+ * - should return threads with new thread when given by ADD_THREAD action
+ * - should return threads which contains userId in exact thread's upVotesBy property
+ *   when given by UP_VOTE_THREAD action
+ * - should return threads with removed userId in exact thread's upVotesBy property
+ *   when given by NEUTRALIZE_UP_VOTE_THREAD action
+ * - should return threads which contains userId in exact thread's downVotesBy property
+ *   when given by DOWN_VOTE_THREAD action
+ * - should return threads with removed userId in exact thread's downVotesBy property
+ *   when given by NEUTRALIZE_DOWN_VOTE_THREAD action
+ */
 
 const ActionType = {
   UNKNOWN: 'UNKNOWN',

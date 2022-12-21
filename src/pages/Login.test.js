@@ -9,11 +9,11 @@ import authUserReducer from '../states/authUser/reducer';
 import '../states/authUser/action';
 import Login from './Login';
 
-/*
-  Login page form input and submit integration
-  - should handle form input and submit function correctly
-  - should be able to link to register page
-*/
+/**
+ *  Login page form input and submit integration
+ *  - should handle form input and submit function correctly
+ *  - should be able to link to register page
+ */
 
 const user = {
   id: 'tester101',

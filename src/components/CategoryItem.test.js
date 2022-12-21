@@ -7,11 +7,11 @@ import userEvent from '@testing-library/user-event';
 import filterReducer from '../states/filter/reducer';
 import CategoryItem from './CategoryItem';
 
-/*
-  CategoryItem and redux store integration
-  - should set filter state and add active class when clicked
-  - should remove filter state and active class when clicked again
-*/
+/**
+ *  CategoryItem and redux store integration
+ *  - should set filter state and add active class when clicked
+ *  - should remove filter state and active class when clicked again
+ */
 
 const category = 'react';
 

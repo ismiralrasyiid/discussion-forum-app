@@ -1,27 +1,27 @@
 import threadDetailReducer from './reducer';
 
-/*
-  threadDetailReducer function
-  - should return the initial state when given by unknown action
-  - should return thread detail when given by SET_THREAD_DETAIL action
-  - should return thread detail with new comment when given by ADD_COMMENT action
-  - should return thread detail which contains userId in upVotesBy property
-    when given by UP_VOTE_THREAD_DETAIL action
-  - should return thread detail with removed userId from upVotesBy property
-  when given by NEUTRALIZE_UP_VOTE_THREAD_DETAIL action
-  - should return thread detail which contains userId in downVotesBy property
-    when given by DOWN_VOTE_THREAD_DETAIL action
-  - should return thread detail with removed userId from downVotesBy property
-  when given by NEUTRALIZE_DOWN_VOTE_THREAD_DETAIL action
-  - should return thread detail which contains userId in exact comment's upVotesBy property
-    when given by UP_VOTE_COMMENT action
-  - should return thread detail with removed userId in exact comment's upVotesBy property
-    when given by NEUTRALIZE_UP_VOTE_COMMENT action
-  - should return thread detail which contains userId in exact comment's downVotesBy property
-    when given by DOWN_VOTE_COMMENT action
-  - should return thread detail with removed userId in exact comment's downVotesBy property
-    when given by NEUTRALIZE_DOWN_VOTE_COMMENT action
-*/
+/**
+ * threadDetailReducer function
+ * - should return the initial state when given by unknown action
+ * - should return thread detail when given by SET_THREAD_DETAIL action
+ * - should return thread detail with new comment when given by ADD_COMMENT action
+ * - should return thread detail which contains userId in upVotesBy property
+ *   when given by UP_VOTE_THREAD_DETAIL action
+ * - should return thread detail with removed userId from upVotesBy property
+ *   when given by NEUTRALIZE_UP_VOTE_THREAD_DETAIL action
+ * - should return thread detail which contains userId in downVotesBy property
+ *   when given by DOWN_VOTE_THREAD_DETAIL action
+ * - should return thread detail with removed userId from downVotesBy property
+ *   when given by NEUTRALIZE_DOWN_VOTE_THREAD_DETAIL action
+ * - should return thread detail which contains userId in exact comment's upVotesBy property
+ *   when given by UP_VOTE_COMMENT action
+ * - should return thread detail with removed userId in exact comment's upVotesBy property
+ *   when given by NEUTRALIZE_UP_VOTE_COMMENT action
+ * - should return thread detail which contains userId in exact comment's downVotesBy property
+ *   when given by DOWN_VOTE_COMMENT action
+ * - should return thread detail with removed userId in exact comment's downVotesBy property
+ *   when given by NEUTRALIZE_DOWN_VOTE_COMMENT action
+ */
 
 const ActionType = {
   UNKNOWN: 'UNKNOWN',

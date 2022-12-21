@@ -7,11 +7,11 @@ import categoriesReducer from '../states/categories/reducer';
 import Categories from './Categories';
 import { setCategoriesActionCreator } from '../states/categories/action';
 
-/*
-  Categories section and redux store integration
-  - should render loading component when categories is empty
-  - should render category items based on store
-*/
+/**
+ *  Categories section and redux store integration
+ *  - should render loading component when categories is empty
+ *  - should render category items based on store
+ */
 
 const categories = ['react', 'general', 'jest'];
 
