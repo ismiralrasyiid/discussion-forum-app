@@ -1,12 +1,12 @@
-/*
-  Login feature e2e test
-  - should display login page correctly
-  - should redirect to register page when link is clicked
-  - should display alert when email is empty
-  - should display alert when password is empty
-  - should display alert when username and password are wrong
-  - should show message and display homepage when username and password are correct
-*/
+/**
+ * Login feature e2e test
+ * - should display login page correctly
+ * - should redirect to register page when link is clicked
+ * - should display alert when email is empty
+ * - should display alert when password is empty
+ * - should display alert when username and password are wrong
+ * - should show message and display homepage when username and password are correct
+ */
 
 describe('Login feature e2e test', async () => {
   const validUser = {
